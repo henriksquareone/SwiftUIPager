@@ -188,13 +188,20 @@ public struct Pager<Element, ID, PageView>: View  where PageView: View, Element:
         self.content = content
         self.pagerModel.totalPages = data.count
     }
+    
+    @State var size: CGSize = .zero
 
     public var body: some View {
-        GeometryReader { proxy in
-            self.content(for: proxy.size)
-        }
-        .if(isClipped) {
-            $0.clipped()
+        if #available(iOS 15.0, *) {
+            content(for: size)
+                .bindingSize($size)
+        } else {
+            GeometryReader { proxy in
+                self.content(for: proxy.size)
+            }
+            .if(isClipped) {
+                $0.clipped()
+            }
         }
     }
 
