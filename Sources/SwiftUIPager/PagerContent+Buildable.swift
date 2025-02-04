@@ -196,6 +196,10 @@ extension Pager.PagerContent: Buildable {
     func alignment(_ value: PositionAlignment) -> Self {
         mutating(keyPath: \.alignment, value: value)
     }
+    
+    func contentAlignment(_ value: Alignment) -> Self {
+        mutating(keyPath: \.contentAlignment, value: value)
+    }
 
     /// Returns a horizontal pager
     ///

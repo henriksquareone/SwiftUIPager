@@ -77,6 +77,8 @@ extension Pager {
         /// The elements alignment relative to the container
         var alignment: PositionAlignment = .center
 
+        var contentAlignment: Alignment = .center
+        
         /// Swiping back is disabled
         var dragForwardOnly: Bool = false
 
@@ -186,7 +188,7 @@ extension Pager {
                             EmptyView()
                         } else {
                             self.content(item.element)
-                                .frame(size: self.pageSize)
+                                .frame(size: self.pageSize, alignment: self.contentAlignment)
                                 .scaleEffect(self.scale(for: item))
                                 .rotation3DEffect((self.isHorizontal ? .zero : Angle(degrees: -90)) - self.scrollDirectionAngle,
                                                   axis: (0, 0, 1))
@@ -198,7 +200,7 @@ extension Pager {
                 }
                 .offset(x: self.xOffset, y : self.yOffset)
             }
-            .frame(size: size)
+                .frame(size: size, alignment: contentAlignment)
 
             #if !os(tvOS)
             var wrappedView: AnyView = swipeInteractionArea == .page ? AnyView(stack) : AnyView(stack.contentShape(Rectangle()))
