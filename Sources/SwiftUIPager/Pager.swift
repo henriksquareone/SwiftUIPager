@@ -194,16 +194,11 @@ public struct Pager<Element, ID, PageView>: View  where PageView: View, Element:
     @State var size: CGSize = .zero
 
     public var body: some View {
-        if #available(iOS 15.0, *) {
-            content(for: size)
-                .bindingSize($size)
-        } else {
-            GeometryReader { proxy in
-                self.content(for: proxy.size)
-            }
-            .if(isClipped) {
-                $0.clipped()
-            }
+        GeometryReader { proxy in
+            self.content(for: proxy.size)
+        }
+        .if(isClipped) {
+            $0.clipped()
         }
     }
 
