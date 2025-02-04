@@ -119,6 +119,8 @@ public struct Pager<Element, ID, PageView>: View  where PageView: View, Element:
     
     /// `true` if `Pager` is clipped
     var isClipped: Bool = true
+    
+    var contentAlignment: Alignment = .center
 
     /// Used to modify `Pager` offset outside this view
     var pageOffset: Double = 0
@@ -215,6 +217,7 @@ public struct Pager<Element, ID, PageView>: View  where PageView: View, Element:
                 .contentLoadingPolicy(contentLoadingPolicy)
                 .loopPages(isInifinitePager, repeating: loopingCount)
                 .alignment(alignment)
+                .contentAlignment(contentAlignment)
                 .interactive(scale: interactiveScale)
                 .interactive(opacity: opacityIncrement)
                 .interactive(rotation: shouldRotate)

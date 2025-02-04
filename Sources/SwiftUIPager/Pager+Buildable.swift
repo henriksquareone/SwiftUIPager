@@ -209,6 +209,10 @@ extension Pager: Buildable {
         mutating(keyPath: \.alignment, value: value)
     }
 
+    public func contentAlignment(_ value: Alignment) -> Self {
+        mutating(keyPath: \.contentAlignment, value: value)
+    }
+    
     /// Returns a horizontal pager
     ///
     /// - Parameter swipeDirection: direction of the swipe. Defaults to `.startToEnd`
